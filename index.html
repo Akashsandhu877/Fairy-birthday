@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,54 +6,134 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Happy Birthday Fairy 💗</title>
 <style>
-*{box-sizing:border-box}body{margin:0;padding:16px;font-family:system-ui,sans-serif;color:#784d72;background:linear-gradient(135deg,#fff0f7,#f0eaff);text-align:center}.card{max-width:680px;margin:16px auto;padding:22px 16px;background:#ffffffdf;border-radius:24px;box-shadow:0 8px 30px #dca9ce44}h1{font-size:clamp(38px,10vw,64px);color:#c45193;margin:12px 0}h2{color:#b84e91}.btn,button{border:0;border-radius:14px;padding:12px;margin:5px;background:#ffdfef;color:#874d78;font-size:16px;cursor:pointer}.btn{background:linear-gradient(100deg,#ff75b5,#b9a0ff);color:white;font-weight:bold}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.grid button{font-size:24px;padding:12px 0}.memory{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;max-width:400px;margin:auto}.memory button{font-size:24px;padding:14px 0}.photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photos img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px}.hidden{display:none!important}.message{background:#fff0f8;border-radius:18px;padding:15px;line-height:1.8}.status{font-weight:bold;color:#b84e91}.quiz button{display:block;width:100%;text-align:left;background:#fff0f7}footer{padding:20px;color:#a17e9e}@media(max-width:360px){body{padding:8px}.card{padding:15px 10px}}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#ffe2ef,#e7e3ff,#fff0d8);color:#49334c;text-align:center}
+main{max-width:700px;margin:auto;padding:18px}
+.card{background:#ffffffdf;border-radius:22px;padding:22px;margin:18px 0;box-shadow:0 7px 25px #8c659022}
+h1{color:#d94f91;font-size:32px}
+h2{color:#b34c88}
+p{line-height:1.8}
+button{background:#e879ad;color:white;border:0;border-radius:24px;padding:12px 18px;margin:6px;font-size:15px;cursor:pointer}
+button:active{transform:scale(.97)}
+.hidden{display:none}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.photos img{width:100%;height:190px;object-fit:cover;border-radius:15px;background:#f5d9e8}
+.letter{text-align:left;white-space:pre-line;line-height:1.9}
+iframe{width:100%;max-width:500px;border:0;border-radius:14px}
+.heart{font-size:30px}
+footer{padding:20px;font-size:13px}
 </style>
 </head>
 <body>
-<header class="card">
+<main>
+
+<section class="card">
 <div style="font-size:48px">🧚‍♀️ 🎂 💗</div>
-<p>A little birthday adventure made just for you</p>
-<h1>Happy Birthday,<br>Fairy! 💗</h1>
-<p>Three little games, lovely memories and a special message are waiting for you.</p>
-<button class="btn" onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">Start your surprise ✨</button>
-</header>
-<section class="card" id="games">
-<h2>🎀 Game 1: Catch 5 Hearts</h2><p>Tap any five hearts!</p><p class="status" id="hc">Hearts: 0 / 5</p><div class="grid" id="hearts"></div><p id="hd" class="status"></p>
-<hr style="border:0;border-top:1px solid #f4d6e8;margin:24px 0">
-<h2>🦋 Game 2: Memory Match</h2><p>Find all four matching pairs.</p><p class="status" id="ms">Pairs: 0 / 4</p><div class="memory" id="mem"></div><p id="md" class="status"></p>
-<hr style="border:0;border-top:1px solid #f4d6e8;margin:24px 0">
-<h2>🎂 Game 3: Birthday Quiz</h2><p id="qq"></p><div class="quiz" id="qa"></div><p id="qs" class="status"></p>
-<p id="progress" class="status">Games complete: 0 / 3</p>
+<h1>Happy Birthday, Fairy!</h1>
+<p>A little birthday surprise made just for you ✨</p>
+<p>Ready for your special surprise?</p>
+<button onclick="show('games')">Start Your Surprise 💝</button>
 </section>
+
+<section class="card hidden" id="games">
+<h2>Game 1: Catch the Hearts 💗</h2>
+<p>Tap the heart 5 times!</p>
+<div class="heart" onclick="heartGame()">💖</div>
+<p id="heartCount">Hearts: 0 / 5</p>
+<p id="heartWin"></p>
+
+<hr>
+
+<h2>Game 2: Birthday Quiz 🎂</h2>
+<p>What do we celebrate today?</p>
+<button onclick="quiz(false)">Friendship Day</button>
+<button onclick="quiz(true)">Fairy's Birthday 🎂</button>
+<p id="quizResult"></p>
+
+<hr>
+
+<h2>Game 3: Make a Wish ✨</h2>
+<p>Choose your birthday wish!</p>
+<button onclick="wish('Khushiyan')">Khushiyan 🌸</button>
+<button onclick="wish('Kamiyabi')">Kamiyabi 🌟</button>
+<button onclick="wish('Dher saara pyaar')">Dher saara pyaar 💗</button>
+<p id="wishResult"></p>
+
+<button onclick="show('gallery')">Open Your Memories 📸</button>
+</section>
+
 <section class="card hidden" id="gallery">
-<h2>📸 Little Memories</h2><p>Choose photos on your device to preview them here. To show them on Fairy's phone, the images must also be uploaded to GitHub.</p>
-<div class="photos" id="photos">
-<div>🌷<br>Memory 1</div><div>🦋<br>Memory 2</div><div>💗<br>Memory 3</div><div>🎀<br>Memory 4</div>
+<h2>Our Little Memories 📸</h2>
+<p>Some special moments for you 💕</p>
+<div class="photos">
+<img src="Screenshot_20261028-141603.jpg" alt="Memory 1">
+<img src="1793178806012.jpg" alt="Memory 2">
+<img src="1793178829371.jpg" alt="Memory 3">
+<img src="memory4.jpg" alt="Memory 4">
 </div>
-<p><label>Add photos (up to 4):<br><input type="file" accept="image/*" multiple id="photoInput"></label></p>
+<p>A few memories, a lot of happiness! 🌸</p>
+<button onclick="show('song')">Next Surprise 🎵</button>
 </section>
-<section class="card hidden" id="final">
-<div style="font-size:54px">💝</div><h2>You did it, Fairy!</h2>
-<div class="message">
-<p>Dear Fairy,</p>
-<p>Happy Birthday! 💗 I hope this new chapter brings you peaceful days, genuine smiles, kind people, and little surprises that make your heart feel lighter.</p>
-<p>Even though we know each other online, a kind connection can still mean a lot. Thank you for being part of my little corner of the world. I hope you always feel appreciated, supported, and free to be yourself.</p>
-<p>May your dreams feel closer, your happiest moments multiply, and your year be filled with warmth, laughter, and beautiful possibilities. 🌸</p>
-<p><b>Happy Birthday, Fairy! 🧚‍♀️🎂</b><br>From your online friend, with care 💗</p>
-</div><button class="btn" onclick="celebrate()">Celebrate again 🎉</button>
+
+<section class="card hidden" id="song">
+<h2>A Song For You, Fairy 🎵💗</h2>
+<p>Suniyan Suniyan — Juss</p>
+<iframe height="210"
+src="https://www.youtube-nocookie.com/embed/AKH6ZNSnWOA"
+title="Suniyan Suniyan"
+allow="encrypted-media; picture-in-picture"
+allowfullscreen></iframe>
+<p>If the video doesn't load, use the link below.</p>
+<p><a href="https://www.youtube.com/results?search_query=Suniyan+Suniyan+Juss+official" target="_blank">Play Suniyan Suniyan on YouTube 🎶</a></p>
+<button onclick="show('letter')">Read Your Letter 💌</button>
 </section>
-<footer>Made with care, just for Fairy 💗</footer>
+
+<section class="card hidden" id="letter">
+<h2>Ek Chhota Sa Paighaam 💌</h2>
+<div class="letter">Dear Fairy, 💗
+
+Sab se pehle tumhein janam din bohat bohat mubarak ho! 🎂✨
+
+Dua hai ke tumhari zindagi hamesha khushiyon se bhari rahe, tumhare chehre par muskurahat rahe aur tumhare dil ki achi khwahishein poori hon.
+
+Chahe hum online dost hain aur door hain, lekin kabhi kabhi door rehne wale log bhi hamari zindagi mein ek khaas jagah bana lete hain. Tumhari dosti mere liye khaas hai aur main chahta hoon ke tum hamesha khush raho. 🌸
+
+Meri dua hai ke tumhein zindagi mein aise log milen jo tumhari izzat karein, tumhari baat samjhein aur tumhari muskurahat ki wajah banen.
+
+Aaj ka din tumhara hai, is liye khoob muskurao, khush raho aur apne har khoobsurat lamhe ko yaadgar banao.
+
+Happy Birthday, Fairy! 🧚‍♀️💖
+
+Tumhari online dosti ki taraf se, bohat saari achi duaaon ke saath. 🎀</div>
+<div style="font-size:40px">💗 🎂 🌸</div>
+<button onclick="celebrate()">One Last Surprise 🎉</button>
+<p id="final"></p>
+</section>
+
+<footer>Made with 💗 especially for Fairy</footer>
+</main>
+
 <script>
-const done=new Set();
-function finish(n){done.add(n);document.getElementById('progress').textContent='Games complete: '+done.size+' / 3';if(done.size===3){document.getElementById('gallery').classList.remove('hidden');document.getElementById('final').classList.remove('hidden');celebrate();}}
-const hg=document.getElementById('hearts');let hearts=0;
-for(let i=0;i<10;i++){let b=document.createElement('button');b.textContent=['💗','💖','💕','💘','💝'][i%5];b.onclick=()=>{if(b.disabled)return;b.disabled=true;b.textContent='✨';hearts++;document.getElementById('hc').textContent='Hearts: '+Math.min(hearts,5)+' / 5';if(hearts===5){document.getElementById('hd').textContent='You found all the sparkle! 🌟';finish(1)}};hg.appendChild(b)}
-let sy=['🌸','🦋','🎀','🍓','🌸','🦋','🎀','🍓'];sy.sort(()=>Math.random()-.5);let first=null,lock=false,pairs=0;const mg=document.getElementById('mem');
-sy.forEach(s=>{let b=document.createElement('button');b.textContent='❔';b.dataset.s=s;b.onclick=()=>{if(lock||b.classList.contains('matched')||b===first)return;b.textContent=s;if(!first){first=b;return}lock=true;let a=first,c=b;if(a.dataset.s===c.dataset.s){a.classList.add('matched');c.classList.add('matched');first=null;lock=false;pairs++;document.getElementById('ms').textContent='Pairs: '+pairs+' / 4';if(pairs===4){document.getElementById('md').textContent='Brilliant memory! 🦋';finish(2)}}else setTimeout(()=>{a.textContent='❔';c.textContent='❔';first=null;lock=false},700)};mg.appendChild(b)});
-const quiz=[['What should every birthday have more of?',['Kindness and smiles 💗','Extra homework 📚','Lost socks 🧦'],0],['What is a lovely gift between friends?',['A kind message 💌','A grumpy cloud ☁️','An empty box 📦'],0],['What do we wish for Fairy?',['Happiness and good memories 🌷','Rainy Mondays forever 🌧️','No cake ever 🍰'],0]];let qi=0;
-function showQuiz(){document.getElementById('qq').textContent='Question '+(qi+1)+' of 3: '+quiz[qi][0];let box=document.getElementById('qa');box.innerHTML='';quiz[qi][1].forEach((a,i)=>{let b=document.createElement('button');b.textContent=a;b.onclick=()=>{if(i!==quiz[qi][2]){document.getElementById('qs').textContent='Try again 😊';return}qi++;if(qi===3){box.innerHTML='Birthday quiz complete! 🎉';document.getElementById('qq').textContent='You did amazing!';document.getElementById('qs').textContent='All answers complete!';finish(3)}else{document.getElementById('qs').textContent='Correct! 🌸';showQuiz()}};box.appendChild(b)})}showQuiz();
-document.getElementById('photoInput').addEventListener('change',e=>{let files=Array.from(e.target.files).slice(0,4),box=document.getElementById('photos');box.innerHTML='';files.forEach((f,i)=>{let d=document.createElement('div'),im=document.createElement('img'),p=document.createElement('p');im.src=URL.createObjectURL(f);im.alt='Birthday memory '+(i+1);p.textContent='Memory '+(i+1);d.append(im,p);box.appendChild(d)})});
-function celebrate(){let chars=['💗','✨','🌸','🎉','💖','🦋'];for(let i=0;i<35;i++){let s=document.createElement('span');s.textContent=chars[Math.floor(Math.random()*chars.length)];s.style.cssText='position:fixed;top:-25px;left:'+Math.random()*100+'vw;font-size:24px;z-index:9;pointer-events:none;transition:transform 2.5s,opacity 2.5s';document.body.appendChild(s);setTimeout(()=>{s.style.transform='translateY(110vh) rotate(500deg)';s.style.opacity='0'},30);setTimeout(()=>s.remove(),2800)}}
+function show(id){
+document.querySelectorAll('main section.card').forEach(s=>s.classList.add('hidden'));
+document.getElementById(id).classList.remove('hidden');
+window.scrollTo({top:0,behavior:'smooth'});
+}
+let hearts=0;
+function heartGame(){
+if(hearts<5)hearts++;
+document.getElementById('heartCount').textContent='Hearts: '+hearts+' / 5';
+if(hearts===5)document.getElementById('heartWin').textContent='Yay! You collected all the love! 💖';
+}
+function quiz(correct){
+document.getElementById('quizResult').textContent=correct?'Correct! Today is all about you, Fairy! 🎂':'Try again, Fairy! 💗';
+}
+function wish(value){
+document.getElementById('wishResult').textContent='May your life be full of '+value+'! 💖';
+}
+function celebrate(){
+document.getElementById('final').textContent='Fairy, hamesha khush rehna! Happy Birthday! 🎉💗🧚‍♀️';
+}
 </script>
 </body>
 </html>
