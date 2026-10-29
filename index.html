@@ -7,89 +7,169 @@
 <title>Happy Birthday Fairy 💗</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#ffe2ef,#e7e3ff,#fff0d8);color:#49334c;text-align:center}
-main{max-width:700px;margin:auto;padding:18px}
-.card{background:#ffffffdf;border-radius:22px;padding:22px;margin:18px 0;box-shadow:0 7px 25px #8c659022}
-h1{color:#d94f91;font-size:32px}
-h2{color:#b34c88}
-p{line-height:1.8}
-button{background:#e879ad;color:white;border:0;border-radius:24px;padding:12px 18px;margin:6px;font-size:15px;cursor:pointer}
-button:active{transform:scale(.97)}
-.hidden{display:none}
-.photos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.photos img{width:100%;height:190px;object-fit:cover;border-radius:15px;background:#f5d9e8}
-.letter{text-align:left;white-space:pre-line;line-height:1.9}
-iframe{width:100%;max-width:500px;border:0;border-radius:14px}
-.heart{font-size:30px}
-footer{padding:20px;font-size:13px}
+:root{--pink:#ff4eb8;--purple:#9b6cff;--navy:#080d2b}
+body{margin:0;background:radial-gradient(ellipse at top,#35205c,#111334 48%,#05091e);color:#fff;font-family:Arial,sans-serif;text-align:center}
+main{max-width:1050px;margin:auto;padding:14px}
+.card{background:linear-gradient(145deg,#171b49ed,#211443ed);border:1px solid #a879ff;border-radius:20px;padding:18px;margin:13px 0;box-shadow:0 0 18px #a64dff24}
+h1{font-size:clamp(32px,7vw,62px);margin:10px 0;color:#ff91d4;text-shadow:0 0 22px #ff38c4}
+h2{color:#ff9bdc;margin-top:5px}
+p{line-height:1.7}
+button,.btn{border:0;border-radius:30px;padding:12px 19px;background:linear-gradient(90deg,#ff3fac,#a84bff);color:white;font-weight:bold;font-size:15px;cursor:pointer;display:inline-block;text-decoration:none;margin:5px}
+button:active{transform:scale(.96)}
+.hidden{display:none!important}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;text-align:left}
+.grid .card{margin:0}
+.hero{padding:28px 15px;background:linear-gradient(145deg,#38205e,#101b48);overflow:hidden}
+.heroEmoji{font-size:55px;animation:float 3s ease-in-out infinite}
+.glow{color:#ffb6e4;text-shadow:0 0 14px #ff4eb8}
+@keyframes float{50%{transform:translateY(-12px) rotate(4deg)}}
+@keyframes pulse{50%{transform:scale(1.08)}}
+@keyframes rise{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+@keyframes pop{0%{transform:scale(.1) rotate(-30deg);opacity:0}70%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
+@keyframes shake{25%{transform:rotate(-10deg)}75%{transform:rotate(10deg)}}
+@keyframes slice{to{transform:translate(38px,-16px) rotate(16deg)}}
+@keyframes twinkle{50%{opacity:.4;transform:scale(.7)}}
+.heart{position:fixed;bottom:-30px;z-index:20;pointer-events:none;animation:rise 4s linear forwards}
+.friends{font-size:64px;animation:float 2.5s infinite}
+.cake{font-size:95px;display:inline-block;position:relative;transition:.4s}
+.cake.cut{animation:shake .5s 2}
+.candles{font-size:25px;letter-spacing:6px;animation:twinkle .8s infinite}
+.gift{font-size:100px;display:inline-block}
+.gift.open{animation:shake .4s 2}
+.lollipop{font-size:85px;display:none}
+.lollipop.show{display:block;animation:pop .6s}
+.photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.photos img{width:100%;height:190px;object-fit:cover;border-radius:12px;border:1px solid #bfa3ff;background:#24264c}
+video{width:100%;border-radius:12px;background:#000}
+.videoCard{background:#111733;padding:10px;border-radius:14px;overflow-wrap:anywhere}
+.song{background:#fff0fa;color:#25183d;padding:13px;border-radius:13px;margin:9px 0;text-align:left}
+.song a{color:#9d237a;font-weight:bold}
+.letter{text-align:left;white-space:pre-line;line-height:1.9;background:#fff0f7;color:#39223d;padding:18px;border-radius:14px}
+.small{font-size:13px;color:#d7c6ef}
+#count{font-size:48px;color:#ffb6e4;font-weight:bold}
+#cakeMsg,#giftMsg{min-height:30px}
+footer{padding:25px;color:#d7c5ff}
 </style>
 </head>
 <body>
 <main>
 
-<section class="card">
-<div style="font-size:48px">🧚‍♀️ 🎂 💗</div>
-<h1>Happy Birthday, Fairy!</h1>
-<p>A little birthday surprise made just for you ✨</p>
-<p>Ready for your special surprise?</p>
-<button onclick="show('games')">Start Your Surprise 💝</button>
+<section class="card hero">
+<div class="heroEmoji">🧚‍♀️ 🎈 💗</div>
+<p>✨ A little surprise made just for you ✨</p>
+<h1>Happy Birthday<br><span class="glow">Fairy 💖</span></h1>
+<p>You are special, and today is all about you! 🌸</p>
+<button onclick="show('friendship')">Start Your Surprise 💝</button>
 </section>
 
-<section class="card hidden" id="games">
-<h2>Game 1: Catch the Hearts 💗</h2>
-<p>Tap the heart 5 times!</p>
-<div class="heart" onclick="heartGame()">💖</div>
-<p id="heartCount">Hearts: 0 / 5</p>
-<p id="heartWin"></p>
+<section class="card hidden" id="friendship">
+<h2>🤝 Our Friendship</h2>
+<div class="friends">🧑‍🤝‍🧑</div>
+<p class="glow">Distance doesn't matter when friendship is special 💗</p>
+<p>Door hain, lekin hamari dosti ki yaadein hamesha khaas rahengi. 🌸</p>
+<button onclick="hearts()">Send Fairy Some Hearts 💕</button>
+<button onclick="show('cake')">Birthday Cake 🎂</button>
+</section>
 
-<hr>
+<section class="card hidden" id="cake">
+<h2>🎂 Cake Cutting Time!</h2>
+<p>Fairy, birthday wish maango aur cake cut karo!</p>
+<div class="candles" id="candles">🕯️ 🕯️ 🕯️</div>
+<div class="cake" id="cakeEmoji">🎂</div>
+<p id="cakeMsg">Cake cut karne ke liye button dabao! 💗</p>
+<button onclick="cutCake()">Cut the Cake 🎂</button>
+<button onclick="show('gift')">Open Your Special Gift 🎁</button>
+</section>
 
-<h2>Game 2: Birthday Quiz 🎂</h2>
-<p>What do we celebrate today?</p>
-<button onclick="quiz(false)">Friendship Day</button>
-<button onclick="quiz(true)">Fairy's Birthday 🎂</button>
-<p id="quizResult"></p>
-
-<hr>
-
-<h2>Game 3: Make a Wish ✨</h2>
-<p>Choose your birthday wish!</p>
-<button onclick="wish('Khushiyan')">Khushiyan 🌸</button>
-<button onclick="wish('Kamiyabi')">Kamiyabi 🌟</button>
-<button onclick="wish('Dher saara pyaar')">Dher saara pyaar 💗</button>
-<p id="wishResult"></p>
-
-<button onclick="show('gallery')">Open Your Memories 📸</button>
+<section class="card hidden" id="gift">
+<h2>🎁 A Very Special Gift!</h2>
+<p class="glow">Aankhen band karo… tumhare liye ek bohat special gift hai! 💗</p>
+<p>Ready, Fairy? 😁</p>
+<div id="count">3</div>
+<div class="gift" id="giftEmoji">🎁</div>
+<div class="lollipop" id="lollipop">🍭</div>
+<p id="giftMsg">Countdown shuru karne ke liye button dabao!</p>
+<button id="giftButton" onclick="startGift()">3… 2… 1… Open Gift! 🎁</button>
+<button onclick="show('gallery')">See Our Memories 📸</button>
 </section>
 
 <section class="card hidden" id="gallery">
-<h2>Our Little Memories 📸</h2>
-<p>Some special moments for you 💕</p>
+<h2>📸 Our Photo Memories</h2>
+<p>Some little moments to remember 💗</p>
 <div class="photos">
-<img src="Screenshot_20261028-141603.jpg" alt="Memory 1">
-<img src="1793178806012.jpg" alt="Memory 2">
-<img src="1793178829371.jpg" alt="Memory 3">
-<img src="memory4.jpg" alt="Memory 4">
+<img src="IMG-20261029-WA0063.jpg" alt="Memory 1" loading="lazy">
+<img src="1793178806012.jpg" alt="Memory 2" loading="lazy">
+<img src="1793178829371.jpg" alt="Memory 3" loading="lazy">
+<img src="IMG-20261029-WA0064.jpg" alt="Memory 4" loading="lazy">
+<img src="IMG-20261029-WA0065.jpg" alt="Memory 5" loading="lazy">
+<img src="IMG-20261029-WA0066.jpg" alt="Memory 6" loading="lazy">
+<img src="Screenshot_20261028-141603.jpg" alt="Memory 7" loading="lazy">
+<img src="file_000000002fd88211977e25ef489c042b.jpg" alt="Memory 8" loading="lazy">
 </div>
-<p>A few memories, a lot of happiness! 🌸</p>
-<button onclick="show('song')">Next Surprise 🎵</button>
+<button onclick="show('videos')">Watch Our Videos 🎬</button>
 </section>
 
-<section class="card hidden" id="song">
-<h2>A Song For You, Fairy 🎵💗</h2>
-<p>Suniyan Suniyan — Juss</p>
-<iframe height="210"
-src="https://www.youtube-nocookie.com/embed/AKH6ZNSnWOA"
-title="Suniyan Suniyan"
-allow="encrypted-media; picture-in-picture"
-allowfullscreen></iframe>
-<p>If the video doesn't load, use the link below.</p>
-<p><a href="https://www.youtube.com/results?search_query=Suniyan+Suniyan+Juss+official" target="_blank">Play Suniyan Suniyan on YouTube 🎶</a></p>
-<button onclick="show('letter')">Read Your Letter 💌</button>
+<section class="card hidden" id="videos">
+<h2>🎬 Our Video Memories</h2>
+<p>Funny moments and memories 😂💗</p>
+<div class="grid">
+<div class="videoCard">
+<video controls playsinline preload="metadata">
+<source src="Galti_sey_mistake_ho_gai🤣🤣#Foryou_#follow_#repost_#pubgmobile_.mp4" type="video/mp4">
+Your browser does not support this video.
+</video>
+<p>Galti Sey Mistake Ho Gai 🤣</p>
+</div>
+<div class="videoCard">
+<video controls playsinline preload="metadata">
+<source src="My_mental_friend🤣🤭#Foryou_#follow_#repost_#pubgmobile.mp4" type="video/mp4">
+Your browser does not support this video.
+</video>
+<p>My Mental Friend 🤣🤭</p>
+</div>
+<div class="videoCard">
+<video controls playsinline preload="metadata">
+<source src="tiktok_1793266062940906535.mp4" type="video/mp4">
+Your browser does not support this video.
+</video>
+<p>One More Memory 💗</p>
+</div>
+</div>
+<button onclick="show('songs')">Special Songs 🎵</button>
+</section>
+
+<section class="card hidden" id="songs">
+<h2>🎵 Our Special Songs</h2>
+<p>Ye gaane tumhare liye hain, Fairy 💗</p>
+
+<div class="song">
+<h3>💖 Special Song For You — BE HAPPY</h3>
+<p><b>Chandra Brar × MixSingh</b></p>
+<p>Ye gaana poora sunna, khaas tumhare liye, Fairy 💗🎧</p>
+<a href="https://www.youtube.com/results?search_query=BE+HAPPY+Chandra+Brar+MixSingh+official" target="_blank" rel="noopener">▶ Play BE HAPPY on YouTube</a>
+</div>
+
+<div class="song">
+<h3>🎶 Suniyan Suniyan</h3>
+<a href="https://www.youtube.com/results?search_query=Suniyan+Suniyan+Juss+official+video" target="_blank" rel="noopener">▶ Play Suniyan Suniyan</a>
+</div>
+
+<div class="song">
+<h3>🌸 Safar</h3>
+<a href="https://www.youtube.com/results?search_query=Safar+Punjabi+song+official" target="_blank" rel="noopener">▶ Find and play Safar</a>
+</div>
+
+<div class="song">
+<h3>💗 Apa Fer Milange</h3>
+<a href="https://www.youtube.com/results?search_query=Apa+Fer+Milange+Punjabi+official+song" target="_blank" rel="noopener">▶ Play Apa Fer Milange</a>
+</div>
+
+<p class="small">Gaana sunne ke liye YouTube link kholo. Internet connection zaroori hai.</p>
+<button onclick="show('letter')">Read Your Birthday Letter 💌</button>
 </section>
 
 <section class="card hidden" id="letter">
-<h2>Ek Chhota Sa Paighaam 💌</h2>
+<h2>💌 A Little Message For You</h2>
 <div class="letter">Dear Fairy, 💗
 
 Sab se pehle tumhein janam din bohat bohat mubarak ho! 🎂✨
@@ -105,12 +185,19 @@ Aaj ka din tumhara hai, is liye khoob muskurao, khush raho aur apne har khoobsur
 Happy Birthday, Fairy! 🧚‍♀️💖
 
 Tumhari online dosti ki taraf se, bohat saari achi duaaon ke saath. 🎀</div>
-<div style="font-size:40px">💗 🎂 🌸</div>
-<button onclick="celebrate()">One Last Surprise 🎉</button>
-<p id="final"></p>
+<button onclick="show('final')">One Last Surprise ✨</button>
 </section>
 
-<footer>Made with 💗 especially for Fairy</footer>
+<section class="card hidden" id="final">
+<h2>🌟 One Last Surprise</h2>
+<div style="font-size:85px;animation:pulse 1.5s infinite">🥰💗🎉</div>
+<h2>Happy Birthday, Fairy!</h2>
+<p>Tumhari smile hi hamara biggest gift hai! 💗</p>
+<p>Stay happy 🌸 Stay blessed ✨ Keep smiling 💖</p>
+<button onclick="hearts()">Send More Hearts 💕</button>
+</section>
+
+<footer>Made with 💗 especially for Fairy<br>Best Friends Forever 🌸</footer>
 </main>
 
 <script>
@@ -119,20 +206,71 @@ document.querySelectorAll('main section.card').forEach(s=>s.classList.add('hidde
 document.getElementById(id).classList.remove('hidden');
 window.scrollTo({top:0,behavior:'smooth'});
 }
-let hearts=0;
-function heartGame(){
-if(hearts<5)hearts++;
-document.getElementById('heartCount').textContent='Hearts: '+hearts+' / 5';
-if(hearts===5)document.getElementById('heartWin').textContent='Yay! You collected all the love! 💖';
+function hearts(){
+for(let i=0;i<22;i++){
+let h=document.createElement('div');
+h.className='heart';
+h.textContent=['💗','💕','💖','✨','🌸'][Math.floor(Math.random()*5)];
+h.style.left=Math.random()*100+'vw';
+h.style.animationDuration=(2.5+Math.random()*2)+'s';
+h.style.fontSize=(18+Math.random()*25)+'px';
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),5000);
 }
-function quiz(correct){
-document.getElementById('quizResult').textContent=correct?'Correct! Today is all about you, Fairy! 🎂':'Try again, Fairy! 💗';
 }
-function wish(value){
-document.getElementById('wishResult').textContent='May your life be full of '+value+'! 💖';
+function cutCake(){
+const c=document.getElementById('cakeEmoji');
+c.classList.remove('cut');
+void c.offsetWidth;
+c.classList.add('cut');
+document.getElementById('candles').textContent='💨 💨 💨';
+document.getElementById('cakeMsg').textContent='Yay! Cake cut ho gaya! 🎂 Tumhari har achi wish poori ho! 💗';
+hearts();
 }
-function celebrate(){
-document.getElementById('final').textContent='Fairy, hamesha khush rehna! Happy Birthday! 🎉💗🧚‍♀️';
+function funnySound(){
+try{
+const AudioContext=window.AudioContext||window.webkitAudioContext;
+if(!AudioContext)return;
+const ctx=new AudioContext();
+[660,880,540,760].forEach((f,i)=>{
+let osc=ctx.createOscillator(),gain=ctx.createGain();
+osc.type='triangle';osc.frequency.value=f;
+gain.gain.setValueAtTime(.001,ctx.currentTime+i*.13);
+gain.gain.exponentialRampToValueAtTime(.12,ctx.currentTime+i*.13+.03);
+gain.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+i*.13+.12);
+osc.connect(gain);gain.connect(ctx.destination);
+osc.start(ctx.currentTime+i*.13);osc.stop(ctx.currentTime+i*.13+.14);
+});
+}catch(e){}
+}
+function startGift(){
+const btn=document.getElementById('giftButton');
+const count=document.getElementById('count');
+const gift=document.getElementById('giftEmoji');
+const lol=document.getElementById('lollipop');
+const msg=document.getElementById('giftMsg');
+if(btn.dataset.started==='yes')return;
+btn.dataset.started='yes';
+btn.disabled=true;
+let n=3;
+count.textContent=n;
+msg.textContent='Aankhen band karo, Fairy! 🙈';
+const timer=setInterval(()=>{
+n--;
+if(n>0){count.textContent=n;return;}
+clearInterval(timer);
+count.textContent='🎉 SURPRISE! 🎉';
+gift.classList.add('open');
+gift.textContent='🎁✨';
+setTimeout(()=>{
+gift.style.display='none';
+lol.classList.add('show');
+msg.textContent='Surprise! 😂 Lollipop hi mila! Asli gift toh tumhari smile hai! 🍭🤣';
+funnySound();
+hearts();
+btn.textContent='Surprise Opened 💗';
+},700);
+},1000);
 }
 </script>
 </body>
